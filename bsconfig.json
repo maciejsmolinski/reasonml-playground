@@ -3,7 +3,7 @@
 {
   "name": "purereason",
   "refmt": 3,
-  "version": "0.1.0",
+  "version": "0.1.2",
   "bsc-flags": ["-bs-super-errors"],
   "sources": [
     "src"
