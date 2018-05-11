@@ -1,20 +1,25 @@
 {
-  "name": "purereason",
-  "version": "0.1.0",
+  "name": "reasonml-playground",
+  "version": "1.0.0",
   "scripts": {
+    "clean": "bsb -clean-world",
     "build": "bsb -make-world",
-    "start": "bsb -make-world -w",
-    "clean": "bsb -clean-world"
+    "watch": "bsb -make-world -w",
+    "start": "parcel src/index.html"
   },
   "keywords": [
     "BuckleScript"
   ],
+  "author": "Maciej Smolinski",
   "license": "MIT",
   "devDependencies": {
-    "bs-platform": "^2.2.0"
+    "bs-platform": "^3.0.0",
+    "bsb-js": "^1.1.0",
+    "parcel-bundler": "^1.8.1"
   },
   "dependencies": {
     "express": "^4.16.2",
-    "isomorphic-unfetch": "^2.0.0"
+    "isomorphic-unfetch": "^2.0.0",
+    "reason-react": "^0.4.1"
   }
 }
