@@ -30,20 +30,21 @@ module Category = {
 
 module Categories = {
   let component = ReasonReact.statelessComponent("Categories");
+  let modules = [|
+    <Category name="Compile to JavaScript" />,
+    <Category name="Product Development" />,
+    <Category name="Haskell" />,
+    <Category name="Functional Programming" />,
+    <Category name="Finance" />,
+    <Category name="Agile" />,
+    <Category name="Frontend" />,
+    <Category name="JavaScript" />,
+    <Category name="Leadership" />,
+  |];
   let make = _children => {
     ...component,
     render: _self =>
-      <div className="categories">
-        <Category name="Compile to JavaScript" />
-        <Category name="Product Development" />
-        <Category name="Haskell" />
-        <Category name="Functional Programming" />
-        <Category name="Finance" />
-        <Category name="Agile" />
-        <Category name="Frontend" />
-        <Category name="JavaScript" />
-        <Category name="Leadership" />
-      </div>,
+      <div className="categories"> (modules |> ReasonReact.array) </div>,
   };
 };
 

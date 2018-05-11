@@ -61,6 +61,18 @@ var Category = /* module */[
 
 var component$1 = ReasonReact.statelessComponent("Categories");
 
+var modules = /* array */[
+  ReasonReact.element(/* None */0, /* None */0, make("Compile to JavaScript", /* array */[])),
+  ReasonReact.element(/* None */0, /* None */0, make("Product Development", /* array */[])),
+  ReasonReact.element(/* None */0, /* None */0, make("Haskell", /* array */[])),
+  ReasonReact.element(/* None */0, /* None */0, make("Functional Programming", /* array */[])),
+  ReasonReact.element(/* None */0, /* None */0, make("Finance", /* array */[])),
+  ReasonReact.element(/* None */0, /* None */0, make("Agile", /* array */[])),
+  ReasonReact.element(/* None */0, /* None */0, make("Frontend", /* array */[])),
+  ReasonReact.element(/* None */0, /* None */0, make("JavaScript", /* array */[])),
+  ReasonReact.element(/* None */0, /* None */0, make("Leadership", /* array */[]))
+];
+
 function make$1() {
   return /* record */[
           /* debugName */component$1[/* debugName */0],
@@ -75,7 +87,7 @@ function make$1() {
           /* render */(function () {
               return React.createElement("div", {
                           className: "categories"
-                        }, ReasonReact.element(/* None */0, /* None */0, make("Compile to JavaScript", /* array */[])), ReasonReact.element(/* None */0, /* None */0, make("Product Development", /* array */[])), ReasonReact.element(/* None */0, /* None */0, make("Haskell", /* array */[])), ReasonReact.element(/* None */0, /* None */0, make("Functional Programming", /* array */[])), ReasonReact.element(/* None */0, /* None */0, make("Finance", /* array */[])), ReasonReact.element(/* None */0, /* None */0, make("Agile", /* array */[])), ReasonReact.element(/* None */0, /* None */0, make("Frontend", /* array */[])), ReasonReact.element(/* None */0, /* None */0, make("JavaScript", /* array */[])), ReasonReact.element(/* None */0, /* None */0, make("Leadership", /* array */[])));
+                        }, modules);
             }),
           /* initialState */component$1[/* initialState */10],
           /* retainedProps */component$1[/* retainedProps */11],
@@ -87,6 +99,7 @@ function make$1() {
 
 var Categories = /* module */[
   /* component */component$1,
+  /* modules */modules,
   /* make */make$1
 ];
 
