@@ -12,8 +12,8 @@
 ## Installing dependencies & compiling the code
 
 * Run `npm install` to install all dependencies
-* Run `npm run start` to compile the code and continuously rebuild as you change the code
-* Or run `npm run build` to compile code once
+* Run `npm run start` to compile the code and continuously rebuild as the code changes
+* Open `http://localhost:1234` to see the running application
 
 ## Troubleshooting
 
