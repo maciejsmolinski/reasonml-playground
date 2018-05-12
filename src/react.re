@@ -17,6 +17,16 @@ module Dom = {
     uniqueId => append({j|<div id="$uniqueId"></div>|j});
 };
 
+module Data = {
+  let extractCategories: string => array(string) = [%bs.raw
+    {|
+    function (text) {
+      return text.match(/\[.*?\]/ig).map(category => category.slice(1, -1))
+    }
+  |}
+  ];
+};
+
 module Category = {
   let component = ReasonReact.statelessComponent("Category");
   let make = (~name, _children) => {
@@ -30,26 +40,25 @@ module Category = {
 
 module Categories = {
   let component = ReasonReact.statelessComponent("Categories");
-  let modules = [|
-    <Category name="Compile to JavaScript" />,
-    <Category name="Product Development" />,
-    <Category name="Haskell" />,
-    <Category name="Functional Programming" />,
-    <Category name="Finance" />,
-    <Category name="Agile" />,
-    <Category name="Frontend" />,
-    <Category name="JavaScript" />,
-    <Category name="Leadership" />,
-  |];
-  let make = _children => {
+  let toCategory = name => <Category name key=name />;
+  let make = (~data, _children) => {
     ...component,
     render: _self =>
-      <div className="categories"> (modules |> ReasonReact.array) </div>,
+      <div className="categories">
+        (data |> Array.map(toCategory) |> ReasonReact.array)
+      </div>,
   };
 };
 
 Dom.clear();
 
-Dom.addUniqueElement @@ "root";
+let renderApp = arr => {
+  Dom.addUniqueElement @@ "root";
+  ReactDOMRe.renderToElementWithId(<Categories data=arr />, "root");
+};
 
-ReactDOMRe.renderToElementWithId(<Categories />, "root");
+Js.Promise.(
+  Fetch.fetch("https://rawgit.com/maciejsmolinski/learnings/master/README.md")
+  |> then_(Fetch.Response.text)
+  |> then_(text => text |> Data.extractCategories |> renderApp |> resolve)
+);
