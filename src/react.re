@@ -2,14 +2,14 @@ module Dom = {
   let clear: unit => unit = [%bs.raw
     {|
     function () {
-      typeof document !== 'undefined' && document.body && (document.body.innerHTML = "");
+      document.body.innerHTML = '';
     }
   |}
   ];
   let append: string => unit = [%bs.raw
     {|
       function (content) {
-        typeof document !== 'undefined' && document.body && (document.body.innerHTML = document.body.innerHTML + content);
+        document.body.innerHTML += content;
       }
     |}
   ];
@@ -21,7 +21,7 @@ module Data = {
   let extractCategories: string => array(string) = [%bs.raw
     {|
     function (text) {
-      return text.match(/\[.*?\]/ig).map(category => category.slice(1, -1))
+      return (text.match(/\[.*?\]/ig) || []).map(category => category.slice(1, -1))
     }
   |}
   ];

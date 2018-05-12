@@ -9,13 +9,13 @@ var ReasonReact = require("reason-react/src/ReasonReact.js");
 
 var clear = (
     function () {
-      typeof document !== 'undefined' && document.body && (document.body.innerHTML = "");
+      document.body.innerHTML = '';
     }
   );
 
 var append = (
       function (content) {
-        typeof document !== 'undefined' && document.body && (document.body.innerHTML = document.body.innerHTML + content);
+        document.body.innerHTML += content;
       }
     );
 
@@ -31,7 +31,7 @@ var Dom = /* module */[
 
 var extractCategories = (
     function (text) {
-      return text.match(/\[.*?\]/ig).map(category => category.slice(1, -1))
+      return (text.match(/\[.*?\]/ig) || []).map(category => category.slice(1, -1))
     }
   );
 
