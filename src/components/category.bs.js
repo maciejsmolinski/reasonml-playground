@@ -19,7 +19,7 @@ function make(name, _) {
           /* shouldUpdate */component[/* shouldUpdate */8],
           /* render */(function () {
               return React.createElement("span", {
-                          className: "categories__item tag is-dark"
+                          className: "categories__item tag is-rounded is-primary is-medium"
                         }, name);
             }),
           /* initialState */component[/* initialState */10],
