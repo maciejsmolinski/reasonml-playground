@@ -1,0 +1,1 @@
+module App: {let init: unit => Js.Promise.t(unit);};
