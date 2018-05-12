@@ -19,15 +19,3 @@ module App = {
       );
   };
 };
-
-App.init();
-
-Data.extractCategories' @@
-{|
-  some
-  longer
-  text
-  [archives] archives
-  [test](test)
-|}
-|> Js.log;

@@ -23,10 +23,6 @@ function init() {
               }));
 }
 
-init(/* () */0);
-
-console.log(Data.extractCategories$prime("\n  some\n  longer\n  text\n  [archives] archives\n  [test](test)\n"));
-
 var App = [init];
 
 exports.App = App;
