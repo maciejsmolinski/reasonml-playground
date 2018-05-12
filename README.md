@@ -1,6 +1,8 @@
 # ReasonML Playground
 
-[ReasonML](https://reasonml.github.io/) playground with a set of tiny projects so that anyone can learn the language quickly by example.
+[ReasonML](https://reasonml.github.io/) and [Reason React](https://reasonml.github.io/reason-react/) playground with a set of tiny modules and components so that anyone can learn the language by example.
+
+![](/assets/preview.png)
 
 ## Prerequisites
 
