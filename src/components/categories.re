@@ -1,6 +1,6 @@
 let component = ReasonReact.statelessComponent("Categories");
 
-let toCategory = name => <Category name key="name" />;
+let toCategory = name => <Category name key=name />;
 
 let make = (~data, _children) => {
   ...component,

@@ -9,7 +9,7 @@ var ReasonReact = require("reason-react/src/ReasonReact.js");
 var component = ReasonReact.statelessComponent("Categories");
 
 function toCategory(name) {
-  return ReasonReact.element(/* Some */["name"], /* None */0, Category.make(name, /* array */[]));
+  return ReasonReact.element(/* Some */[name], /* None */0, Category.make(name, /* array */[]));
 }
 
 function make(data, _) {
