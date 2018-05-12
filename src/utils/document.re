@@ -1,18 +1,15 @@
-let clear: unit => unit = [%bs.raw
+let addReasonApplicationContainer: string => unit = [%bs.raw
   {|
-  function () {
-    document.body.innerHTML = '';
-  }
-|}
-];
+      function (uniqueId) {
+        var container;
 
-let append: string => unit = [%bs.raw
-  {|
-    function (content) {
-      document.body.innerHTML += content;
-    }
+        if (container = document.getElementById(uniqueId)) {
+          container.remove();
+        }
+
+        container = document.createElement('div');
+        container.id = uniqueId;
+        document.body.appendChild(container);
+      }
   |}
 ];
-
-let addUniqueElement: string => unit =
-  uniqueId => append({j|<div id="$uniqueId"></div>|j});

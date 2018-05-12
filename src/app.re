@@ -1,14 +1,13 @@
 module App = {
   let render: array(string) => unit =
     categories => {
-      Document.addUniqueElement @@ "root";
+      Document.addReasonApplicationContainer("reason-application");
       ReactDOMRe.renderToElementWithId(
         <Categories data=categories />,
-        "root",
+        "reason-application",
       );
     };
-  let init: unit => Js.Promise.t(unit) = {
-    Document.clear();
+  let init: unit => Js.Promise.t(unit) =
     () =>
       Js.Promise.(
         Fetch.fetch(
@@ -17,5 +16,4 @@ module App = {
         |> then_(Bs_fetch.Response.text)
         |> then_(text => text |> Data.extractCategories |> render |> resolve)
       );
-  };
 };

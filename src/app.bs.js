@@ -9,11 +9,9 @@ var ReactDOMRe = require("reason-react/src/ReactDOMRe.js");
 var ReasonReact = require("reason-react/src/ReasonReact.js");
 
 function render(categories) {
-  Document.addUniqueElement("root");
-  return ReactDOMRe.renderToElementWithId(ReasonReact.element(/* None */0, /* None */0, Categories.make(categories, /* array */[])), "root");
+  Curry._1(Document.addReasonApplicationContainer, "reason-application");
+  return ReactDOMRe.renderToElementWithId(ReasonReact.element(/* None */0, /* None */0, Categories.make(categories, /* array */[])), "reason-application");
 }
-
-Curry._1(Document.clear, /* () */0);
 
 function init() {
   return fetch("https://rawgit.com/maciejsmolinski/learnings/master/README.md").then((function (prim) {
@@ -26,4 +24,4 @@ function init() {
 var App = [init];
 
 exports.App = App;
-/*  Not a pure module */
+/* Data Not a pure module */
