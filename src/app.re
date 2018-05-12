@@ -14,7 +14,7 @@ module App = {
         Fetch.fetch(
           "https://rawgit.com/maciejsmolinski/learnings/master/README.md",
         )
-        |> then_(Fetch.Response.text)
+        |> then_(Bs_fetch.Response.text)
         |> then_(text => text |> Data.extractCategories |> render |> resolve)
       );
   };
