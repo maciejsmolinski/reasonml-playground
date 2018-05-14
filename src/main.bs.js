@@ -12,7 +12,5 @@ function init() {
   return ReactDOMRe.renderToElementWithId(ReasonReact.element(/* None */0, /* None */0, Application.make(/* array */[])), "reason-application");
 }
 
-var Main = /* module */[/* init */init];
-
-exports.Main = Main;
+exports.init = init;
 /* Document Not a pure module */

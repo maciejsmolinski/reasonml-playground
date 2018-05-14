@@ -1,1 +1,1 @@
-module Main: {let init: unit => unit;};
+let init: unit => unit;

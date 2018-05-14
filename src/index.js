@@ -1,3 +1,3 @@
-import { Main } from "./main.bs";
+import * as Main from "./main.bs";
 
-Main[0]();
+Main.init();
