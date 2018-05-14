@@ -7,10 +7,6 @@ var ReasonReact = require("reason-react/src/ReasonReact.js");
 
 var component = ReasonReact.statelessComponent("Categories");
 
-function toCategory(name) {
-  return ReasonReact.element(/* Some */[name], /* None */0, Category.make(name, /* array */[]));
-}
-
 function make(data, _) {
   return /* record */[
           /* debugName */component[/* debugName */0],
@@ -23,6 +19,9 @@ function make(data, _) {
           /* willUpdate */component[/* willUpdate */7],
           /* shouldUpdate */component[/* shouldUpdate */8],
           /* render */(function () {
+              var toCategory = function (name) {
+                return ReasonReact.element(/* Some */[name], /* None */0, Category.make(name, /* array */[]));
+              };
               return $$Array.map(toCategory, data);
             }),
           /* initialState */component[/* initialState */10],
@@ -34,6 +33,5 @@ function make(data, _) {
 }
 
 exports.component = component;
-exports.toCategory = toCategory;
 exports.make = make;
 /* component Not a pure module */
