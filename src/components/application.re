@@ -18,16 +18,12 @@ let make = _children => {
   didMount: _self => {
     _self.send(Load);
     ignore @@
-    Js.Promise.(
-      Fetch.fetch(
-        "https://rawgit.com/maciejsmolinski/learnings/master/README.md",
-      )
-      |> then_(Bs_fetch.Response.text)
-      |> then_(text =>
-           Data.extractCategories(text)
-           |> (categories => _self.send(Update(categories)) |> resolve)
+    (
+      Api.getCategories()
+      |> Js.Promise.then_(categories =>
+           _self.send(Update(categories)) |> Js.Promise.resolve
          )
-      |> catch((_) => _self.send(Fail) |> resolve)
+      |> Js.Promise.catch((_) => _self.send(Fail) |> Js.Promise.resolve)
     );
   },
   initialState: () => NotAsked,
