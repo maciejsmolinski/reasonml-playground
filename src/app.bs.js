@@ -2,26 +2,76 @@
 'use strict';
 
 var Data = require("./utils/data.bs.js");
+var Block = require("bs-platform/lib/js/block.js");
 var Curry = require("bs-platform/lib/js/curry.js");
+var React = require("react");
 var Document = require("./utils/document.bs.js");
 var Categories = require("./components/categories.bs.js");
 var ReactDOMRe = require("reason-react/src/ReactDOMRe.js");
 var ReasonReact = require("reason-react/src/ReasonReact.js");
 
-function render(categories) {
-  Curry._1(Document.addReasonApplicationContainer, "reason-application");
-  return ReactDOMRe.renderToElementWithId(ReasonReact.element(/* None */0, /* None */0, Categories.make(categories, /* array */[])), "reason-application");
+var component = ReasonReact.reducerComponent("Application");
+
+function make() {
+  return /* record */[
+          /* debugName */component[/* debugName */0],
+          /* reactClassInternal */component[/* reactClassInternal */1],
+          /* handedOffState */component[/* handedOffState */2],
+          /* willReceiveProps */component[/* willReceiveProps */3],
+          /* didMount */(function (_self) {
+              Curry._1(_self[/* send */3], /* Load */0);
+              fetch("https://rawgit.com/maciejsmolinski/learnings/master/README.md").then((function (prim) {
+                          return prim.text();
+                        })).then((function (text) {
+                        var categories = Curry._1(Data.extractCategories, text);
+                        return Promise.resolve(Curry._1(_self[/* send */3], /* Update */[categories]));
+                      })).catch((function () {
+                      return Promise.resolve(Curry._1(_self[/* send */3], /* Fail */1));
+                    }));
+              return /* () */0;
+            }),
+          /* didUpdate */component[/* didUpdate */5],
+          /* willUnmount */component[/* willUnmount */6],
+          /* willUpdate */component[/* willUpdate */7],
+          /* shouldUpdate */component[/* shouldUpdate */8],
+          /* render */(function (_self) {
+              var match = _self[/* state */1];
+              var tmp;
+              tmp = typeof match === "number" ? (
+                  match === 0 ? React.createElement("div", undefined, "...") : "Loading categories..."
+                ) : (
+                  match.tag ? ReasonReact.element(/* None */0, /* None */0, Categories.make(match[0], /* array */[])) : match[0]
+                );
+              return React.createElement("div", {
+                          className: "categories"
+                        }, tmp);
+            }),
+          /* initialState */(function () {
+              return /* NotAsked */0;
+            }),
+          /* retainedProps */component[/* retainedProps */11],
+          /* reducer */(function (action, _) {
+              if (typeof action === "number") {
+                if (action !== 0) {
+                  return /* Update */Block.__(0, [/* Failure */Block.__(0, ["Failed to load content"])]);
+                } else {
+                  return /* Update */Block.__(0, [/* Loading */1]);
+                }
+              } else {
+                return /* Update */Block.__(0, [/* Success */Block.__(1, [action[0]])]);
+              }
+            }),
+          /* subscriptions */component[/* subscriptions */13],
+          /* jsElementWrapped */component[/* jsElementWrapped */14]
+        ];
 }
 
 function init() {
-  return fetch("https://rawgit.com/maciejsmolinski/learnings/master/README.md").then((function (prim) {
-                  return prim.text();
-                })).then((function (text) {
-                return Promise.resolve(render(Curry._1(Data.extractCategories, text)));
-              }));
+  Curry._1(Document.addReasonApplicationContainer, "reason-application");
+  return ReactDOMRe.renderToElementWithId(ReasonReact.element(/* None */0, /* None */0, make(/* array */[])), "reason-application");
 }
 
-var App = [init];
+var App = /* module */[/* init */init];
 
 exports.App = App;
-/* Data Not a pure module */
+/* component Not a pure module */
