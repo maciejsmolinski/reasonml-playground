@@ -38,14 +38,10 @@ let make = _children => {
     | Fail => ReasonReact.Update(Failure("Failed to load content"))
     },
   render: _self =>
-    <div className="categories">
-      (
-        switch (_self.state) {
-        | NotAsked => <div> (ReasonReact.string("...")) </div>
-        | Loading => ReasonReact.string("Loading categories...")
-        | Failure(error) => ReasonReact.string(error)
-        | Success(categories) => <Categories data=categories />
-        }
-      )
-    </div>,
+    switch (_self.state) {
+    | NotAsked => <div> (ReasonReact.string("...")) </div>
+    | Loading => ReasonReact.string("Loading categories...")
+    | Failure(error) => ReasonReact.string(error)
+    | Success(categories) => <Categories data=categories />
+    },
 };
