@@ -6,10 +6,14 @@ var Document = require("./utils/document.bs.js");
 var ReactDOMRe = require("reason-react/src/ReactDOMRe.js");
 var Application = require("./components/application.bs.js");
 var ReasonReact = require("reason-react/src/ReasonReact.js");
+var Server = require("react-dom/server");
 
 function init() {
   Curry._1(Document.addReasonApplicationContainer, "reason-application");
-  return ReactDOMRe.renderToElementWithId(ReasonReact.element(/* None */0, /* None */0, Application.make(/* array */[])), "reason-application");
+  ReactDOMRe.renderToElementWithId(ReasonReact.element(/* None */0, /* None */0, Application.make(/* array */[])), "reason-application");
+  console.log(Server.renderToString(ReasonReact.element(/* None */0, /* None */0, Application.make(/* array */[]))));
+  console.log(Server.renderToStaticMarkup(ReasonReact.element(/* None */0, /* None */0, Application.make(/* array */[]))));
+  return /* () */0;
 }
 
 exports.init = init;
