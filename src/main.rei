@@ -1,0 +1,1 @@
+module Main: {let init: unit => unit;};

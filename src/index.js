@@ -1,3 +1,3 @@
-import { App } from "./app.bs";
+import { Main } from "./main.bs";
 
-App[0]();
+Main[0]();
