@@ -4,8 +4,5 @@ let toCategory = name => <Category name key=name />;
 
 let make = (~data, _children) => {
   ...component,
-  render: _self =>
-    <div className="categories">
-      (data |> Array.map(toCategory) |> ReasonReact.array)
-    </div>,
+  render: _self => data |> Array.map(toCategory) |> ReasonReact.array,
 };

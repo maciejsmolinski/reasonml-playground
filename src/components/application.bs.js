@@ -34,17 +34,15 @@ function make() {
           /* shouldUpdate */component[/* shouldUpdate */8],
           /* render */(function (_self) {
               var match = _self[/* state */1];
-              if (typeof match === "number") {
-                if (match === 0) {
-                  return React.createElement("div", undefined, "...");
-                } else {
-                  return "Loading categories...";
-                }
-              } else if (match.tag) {
-                return ReasonReact.element(/* None */0, /* None */0, Categories.make(match[0], /* array */[]));
-              } else {
-                return match[0];
-              }
+              var tmp;
+              tmp = typeof match === "number" ? (
+                  match === 0 ? React.createElement("div", undefined, "...") : "Loading categories..."
+                ) : (
+                  match.tag ? ReasonReact.element(/* None */0, /* None */0, Categories.make(match[0], /* array */[])) : match[0]
+                );
+              return React.createElement("div", {
+                          className: "categories"
+                        }, tmp);
             }),
           /* initialState */(function () {
               return /* NotAsked */0;
