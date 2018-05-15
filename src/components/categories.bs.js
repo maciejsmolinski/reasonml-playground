@@ -19,8 +19,8 @@ function make(data, _) {
           /* willUpdate */component[/* willUpdate */7],
           /* shouldUpdate */component[/* shouldUpdate */8],
           /* render */(function () {
-              var toCategory = function (name) {
-                return ReasonReact.element(/* Some */[name], /* None */0, Category.make(name, /* array */[]));
+              var toCategory = function (category) {
+                return ReasonReact.element(/* Some */[category.path], /* None */0, Category.make(category.name, category.path, /* array */[]));
               };
               return $$Array.map(toCategory, data);
             }),

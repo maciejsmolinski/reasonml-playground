@@ -1,15 +1,13 @@
-type categories = array(string);
-
 type action =
   | Load
-  | Update(categories)
+  | Update(array(Data.category))
   | Fail;
 
 type state =
   | NotAsked
   | Loading
   | Failure(string)
-  | Success(categories);
+  | Success(array(Data.category));
 
 let component = ReasonReact.reducerComponent("Application");
 

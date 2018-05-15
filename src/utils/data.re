@@ -1,7 +1,21 @@
-let extractCategories: string => array(string) = [%bs.raw
+type category = {
+  .
+  "name": string,
+  "path": string,
+};
+
+let extractCategories: string => array(category) = [%bs.raw
   {|
     function (text) {
-      return (text.match(/\[.*?\]/ig) || []).map(category => category.slice(1, -1))
+      return text.split("\n").reduce((categories, line) => {
+        var name, path;
+        if (line.startsWith("*")) {
+          name = (line.match(/\[(.*?)\]/ig) || [''])[0].slice(1, -1);
+          path = (line.match(/\((.*?)\)/ig) || [''])[0].slice(2, -4);
+          return [{ name: name, path: path }, ...categories];
+        }
+        return categories;
+      }, [])
     }
   |}
 ];
