@@ -14,6 +14,24 @@ function extractCategories$prime(text) {
               }));
 }
 
+var extractSubCategories = (
+  function (text) {
+    return text.split("\n").reduce((categories, line) => {
+      if (line.startsWith("##")) {
+        return [{ name: line.slice(3), resources: [] }, ...categories];
+      }
+      if (line.startsWith("*")) {
+        let [current, ...other] = categories;
+
+        current.resources = [line.slice(2), ...current.resources];
+        return [current, ...other];
+      }
+      return categories;
+    }, [])
+  }
+  );
+
 exports.extractCategories = extractCategories;
 exports.extractCategories$prime = extractCategories$prime;
+exports.extractSubCategories = extractSubCategories;
 /* extractCategories Not a pure module */
