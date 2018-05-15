@@ -17,12 +17,12 @@ let make = _children => {
   ...component,
   didMount: _self => {
     _self.send(Load);
-    Api.getCategories()
-    |> Js.Promise.then_(categories =>
-         _self.send(Update(categories)) |> Js.Promise.resolve
-       )
-    |> Js.Promise.catch((_) => _self.send(Fail) |> Js.Promise.resolve)
-    |> ignore;
+    Js.Promise.(
+      Api.getCategories()
+      |> then_(categories => _self.send(Update(categories)) |> resolve)
+      |> catch((_) => _self.send(Fail) |> resolve)
+      |> ignore
+    );
   },
   initialState: () => NotAsked,
   reducer: (action, _) =>
