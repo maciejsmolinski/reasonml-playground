@@ -7,7 +7,7 @@ var ReasonReact = require("reason-react/src/ReasonReact.js");
 
 var component = ReasonReact.statelessComponent("Categories");
 
-function make(data, _) {
+function make(data, onSelected, _) {
   return /* record */[
           /* debugName */component[/* debugName */0],
           /* reactClassInternal */component[/* reactClassInternal */1],
@@ -20,7 +20,7 @@ function make(data, _) {
           /* shouldUpdate */component[/* shouldUpdate */8],
           /* render */(function () {
               var toCategory = function (category) {
-                return ReasonReact.element(/* Some */[category.path], /* None */0, Category.make(category.name, category.path, /* array */[]));
+                return ReasonReact.element(/* Some */[category.path], /* None */0, Category.make(category.name, category.path, onSelected, /* array */[]));
               };
               return $$Array.map(toCategory, data);
             }),

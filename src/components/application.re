@@ -29,15 +29,17 @@ let make = _children => {
     | Update(categories) => ReasonReact.Update(Success(categories))
     | Fail => ReasonReact.Update(Failure("Failed to load content"))
     },
-  render: _self =>
+  render: _self => {
+    let onSelected = Js.log;
     <div className="categories">
       (
         switch (_self.state) {
         | NotAsked => <div> (ReasonReact.string("...")) </div>
         | Loading => ReasonReact.string("Loading categories...")
         | Failure(error) => ReasonReact.string(error)
-        | Success(categories) => <Categories data=categories />
+        | Success(categories) => <Categories data=categories onSelected />
         }
       )
-    </div>,
+    </div>;
+  },
 };

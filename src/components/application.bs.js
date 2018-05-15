@@ -30,12 +30,16 @@ function make() {
           /* willUpdate */component[/* willUpdate */7],
           /* shouldUpdate */component[/* shouldUpdate */8],
           /* render */(function (_self) {
+              var onSelected = function (prim) {
+                console.log(prim);
+                return /* () */0;
+              };
               var match = _self[/* state */1];
               var tmp;
               tmp = typeof match === "number" ? (
                   match === 0 ? React.createElement("div", undefined, "...") : "Loading categories..."
                 ) : (
-                  match.tag ? ReasonReact.element(/* None */0, /* None */0, Categories.make(match[0], /* array */[])) : match[0]
+                  match.tag ? ReasonReact.element(/* None */0, /* None */0, Categories.make(match[0], onSelected, /* array */[])) : match[0]
                 );
               return React.createElement("div", {
                           className: "categories"
