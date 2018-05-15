@@ -30,7 +30,15 @@ let make = _children => {
     | Fail => ReasonReact.Update(Failure("Failed to load content"))
     },
   render: _self => {
-    let onSelected = Js.log;
+    let onSelected = category =>
+      ignore @@
+      Js.Promise.(
+        Api.getCategory(category)
+        |> then_(data => {
+             Js.log2(category, data);
+             resolve(data);
+           })
+      );
     <div className="categories">
       (
         switch (_self.state) {

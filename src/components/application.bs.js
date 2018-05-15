@@ -30,8 +30,11 @@ function make() {
           /* willUpdate */component[/* willUpdate */7],
           /* shouldUpdate */component[/* shouldUpdate */8],
           /* render */(function (_self) {
-              var onSelected = function (prim) {
-                console.log(prim);
+              var onSelected = function (category) {
+                Api.getCategory(category).then((function (data) {
+                        console.log(category, data);
+                        return Promise.resolve(data);
+                      }));
                 return /* () */0;
               };
               var match = _self[/* state */1];
