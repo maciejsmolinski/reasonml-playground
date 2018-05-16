@@ -77,13 +77,23 @@ let make = _children => {
           }
         )
       </div>
-      <div className="categories">
+      <div className="subcategories">
         (
           switch (_self.state.subcategories) {
           | NotAsked => ReasonReact.null
           | Loading => ReasonReact.string("Loading subcategories...")
           | Failure(error) => ReasonReact.string(error)
-          | Success(_) => ReasonReact.string("Subcategories")
+          | Success(subcategories) =>
+            Array.map(
+              subcategory =>
+                <Subcategory
+                  name=subcategory##name
+                  resources=subcategory##resources
+                  key=subcategory##name
+                />,
+              subcategories,
+            )
+            |> ReasonReact.array
           }
         )
       </div>
