@@ -1,53 +1,92 @@
 type action =
-  | Load
-  | Update(array(Data.category))
-  | Fail;
+  | LoadingCategories
+  | LoadingSubcategories
+  | UpdateCategories(array(Data.category))
+  | UpdateSubcategories(array(Data.subcategory))
+  | FailedToLoadCategories
+  | FailedToLoadSubcategories;
 
-type state =
+type remoteData('a) =
   | NotAsked
   | Loading
   | Failure(string)
-  | Success(array(Data.category));
+  | Success('a);
+
+type state = {
+  categories: remoteData(array(Data.category)),
+  subcategories: remoteData(array(Data.subcategory)),
+};
 
 let component = ReasonReact.reducerComponent("Application");
 
 let make = _children => {
   ...component,
   didMount: _self => {
-    _self.send(Load);
+    _self.send(LoadingCategories);
     Js.Promise.(
       Api.getCategories()
-      |> then_(categories => _self.send(Update(categories)) |> resolve)
-      |> catch((_) => _self.send(Fail) |> resolve)
+      |> then_(categories =>
+           _self.send(UpdateCategories(categories)) |> resolve
+         )
+      |> catch((_) => _self.send(FailedToLoadCategories) |> resolve)
       |> ignore
     );
   },
-  initialState: () => NotAsked,
-  reducer: (action, _) =>
+  initialState: () => {categories: NotAsked, subcategories: NotAsked},
+  reducer: (action, state) =>
     switch (action) {
-    | Load => ReasonReact.Update(Loading)
-    | Update(categories) => ReasonReact.Update(Success(categories))
-    | Fail => ReasonReact.Update(Failure("Failed to load content"))
+    | LoadingCategories => ReasonReact.Update({...state, categories: Loading})
+    | UpdateCategories(cs) =>
+      ReasonReact.Update({...state, categories: Success(cs)})
+    | FailedToLoadCategories =>
+      ReasonReact.Update({
+        ...state,
+        categories: Failure("Failed to load categories"),
+      })
+    | LoadingSubcategories =>
+      ReasonReact.Update({...state, subcategories: Loading})
+    | UpdateSubcategories(subcategories) =>
+      ReasonReact.Update({...state, subcategories: Success(subcategories)})
+    | FailedToLoadSubcategories =>
+      ReasonReact.Update({
+        ...state,
+        categories: Failure("Failed to load subcategories"),
+      })
     },
   render: _self => {
-    let onSelected = category =>
-      ignore @@
+    let onSelected = category => {
+      _self.send(LoadingSubcategories);
       Js.Promise.(
         Api.getCategory(category)
         |> then_(data => {
              Js.log2(category, data);
+             _self.send(UpdateSubcategories(data));
              resolve(data);
            })
+        |> ignore
       );
-    <div className="categories">
-      (
-        switch (_self.state) {
-        | NotAsked => <div> (ReasonReact.string("...")) </div>
-        | Loading => ReasonReact.string("Loading categories...")
-        | Failure(error) => ReasonReact.string(error)
-        | Success(categories) => <Categories data=categories onSelected />
-        }
-      )
+    };
+    <div>
+      <div className="categories">
+        (
+          switch (_self.state.categories) {
+          | NotAsked => <div> (ReasonReact.string("...")) </div>
+          | Loading => ReasonReact.string("Loading categories...")
+          | Failure(error) => ReasonReact.string(error)
+          | Success(categories) => <Categories data=categories onSelected />
+          }
+        )
+      </div>
+      <div className="categories">
+        (
+          switch (_self.state.subcategories) {
+          | NotAsked => ReasonReact.null
+          | Loading => ReasonReact.string("Loading subcategories...")
+          | Failure(error) => ReasonReact.string(error)
+          | Success(_) => ReasonReact.string("Subcategories")
+          }
+        )
+      </div>
     </div>;
   },
 };
