@@ -19,11 +19,11 @@ function make() {
           /* handedOffState */component[/* handedOffState */2],
           /* willReceiveProps */component[/* willReceiveProps */3],
           /* didMount */(function (_self) {
-              Curry._1(_self[/* send */3], /* LoadingCategories */0);
+              Curry._1(_self[/* send */3], /* Category */Block.__(0, [/* Load */0]));
               Api.getCategories(/* () */0).then((function (categories) {
-                        return Promise.resolve(Curry._1(_self[/* send */3], /* UpdateCategories */Block.__(0, [categories])));
+                        return Promise.resolve(Curry._1(_self[/* send */3], /* Category */Block.__(0, [/* Update */[categories]])));
                       })).catch((function () {
-                      return Promise.resolve(Curry._1(_self[/* send */3], /* FailedToLoadCategories */2));
+                      return Promise.resolve(Curry._1(_self[/* send */3], /* Category */Block.__(0, [/* Failed */1])));
                     }));
               return /* () */0;
             }),
@@ -33,10 +33,10 @@ function make() {
           /* shouldUpdate */component[/* shouldUpdate */8],
           /* render */(function (_self) {
               var onSelected = function (category) {
-                Curry._1(_self[/* send */3], /* LoadingSubcategories */1);
+                Curry._1(_self[/* send */3], /* Subcategory */Block.__(1, [/* Load */0]));
                 Api.getCategory(category).then((function (data) {
                         console.log(category, data);
-                        Curry._1(_self[/* send */3], /* UpdateSubcategories */Block.__(1, [data]));
+                        Curry._1(_self[/* send */3], /* Subcategory */Block.__(1, [/* Update */[data]]));
                         return Promise.resolve(data);
                       }));
                 return /* () */0;
@@ -71,40 +71,46 @@ function make() {
             }),
           /* retainedProps */component[/* retainedProps */11],
           /* reducer */(function (action, state) {
-              if (typeof action === "number") {
-                switch (action) {
-                  case 0 : 
-                      return /* Update */Block.__(0, [/* record */[
-                                  /* categories : Loading */1,
-                                  /* subcategories */state[/* subcategories */1]
-                                ]]);
-                  case 1 : 
-                      return /* Update */Block.__(0, [/* record */[
-                                  /* categories */state[/* categories */0],
-                                  /* subcategories : Loading */1
-                                ]]);
-                  case 2 : 
-                      return /* Update */Block.__(0, [/* record */[
-                                  /* categories : Failure */Block.__(0, ["Failed to load categories"]),
-                                  /* subcategories */state[/* subcategories */1]
-                                ]]);
-                  case 3 : 
-                      return /* Update */Block.__(0, [/* record */[
-                                  /* categories : Failure */Block.__(0, ["Failed to load subcategories"]),
-                                  /* subcategories */state[/* subcategories */1]
-                                ]]);
-                  
+              if (action.tag) {
+                var a = action[0];
+                if (typeof a === "number") {
+                  if (a !== 0) {
+                    return /* Update */Block.__(0, [/* record */[
+                                /* categories */state[/* categories */0],
+                                /* subcategories : Failure */Block.__(0, ["Failed to load subcategories"])
+                              ]]);
+                  } else {
+                    return /* Update */Block.__(0, [/* record */[
+                                /* categories */state[/* categories */0],
+                                /* subcategories : Loading */1
+                              ]]);
+                  }
+                } else {
+                  return /* Update */Block.__(0, [/* record */[
+                              /* categories */state[/* categories */0],
+                              /* subcategories : Success */Block.__(1, [a[0]])
+                            ]]);
                 }
-              } else if (action.tag) {
-                return /* Update */Block.__(0, [/* record */[
-                            /* categories */state[/* categories */0],
-                            /* subcategories : Success */Block.__(1, [action[0]])
-                          ]]);
               } else {
-                return /* Update */Block.__(0, [/* record */[
-                            /* categories : Success */Block.__(1, [action[0]]),
-                            /* subcategories */state[/* subcategories */1]
-                          ]]);
+                var a$1 = action[0];
+                if (typeof a$1 === "number") {
+                  if (a$1 !== 0) {
+                    return /* Update */Block.__(0, [/* record */[
+                                /* categories : Failure */Block.__(0, ["Failed to load categories"]),
+                                /* subcategories */state[/* subcategories */1]
+                              ]]);
+                  } else {
+                    return /* Update */Block.__(0, [/* record */[
+                                /* categories : Loading */1,
+                                /* subcategories */state[/* subcategories */1]
+                              ]]);
+                  }
+                } else {
+                  return /* Update */Block.__(0, [/* record */[
+                              /* categories : Success */Block.__(1, [a$1[0]]),
+                              /* subcategories */state[/* subcategories */1]
+                            ]]);
+                }
               }
             }),
           /* subscriptions */component[/* subscriptions */13],
