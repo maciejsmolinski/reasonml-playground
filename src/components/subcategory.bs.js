@@ -20,14 +20,12 @@ function make(name, resources, _) {
           /* shouldUpdate */component[/* shouldUpdate */8],
           /* render */(function () {
               return React.createElement("div", {
-                          className: "subcategories__item"
-                        }, React.createElement("span", {
-                              className: "tag"
-                            }, name), React.createElement("br", undefined), $$Array.map((function (resource) {
-                                return React.createElement("div", {
-                                            key: resource
-                                          }, resource);
-                              }), resources));
+                          className: "content is-small"
+                        }, React.createElement("h2", undefined, name), React.createElement("ul", undefined, $$Array.map((function (resource) {
+                                    return React.createElement("li", {
+                                                key: resource
+                                              }, resource);
+                                  }), resources)));
             }),
           /* initialState */component[/* initialState */10],
           /* retainedProps */component[/* retainedProps */11],

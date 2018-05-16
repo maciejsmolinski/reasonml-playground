@@ -19,12 +19,11 @@ function make(name, path, onSelected, _) {
           /* willUpdate */component[/* willUpdate */7],
           /* shouldUpdate */component[/* shouldUpdate */8],
           /* render */(function () {
-              return React.createElement("span", {
-                          className: "categories__item tag is-rounded is-primary is-medium is-clickable",
+              return React.createElement("li", {
                           onClick: (function () {
                               return Curry._1(onSelected, path);
                             })
-                        }, name);
+                        }, React.createElement("a", undefined, name));
             }),
           /* initialState */component[/* initialState */10],
           /* retainedProps */component[/* retainedProps */11],

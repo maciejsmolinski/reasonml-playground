@@ -54,11 +54,19 @@ function make() {
                 ) : (
                   match$1.tag ? ReasonReact.element(/* None */0, /* None */0, Subcategories.make(match$1[0], /* array */[])) : match$1[0]
                 );
-              return React.createElement("div", undefined, React.createElement("div", {
-                              className: "categories"
-                            }, tmp), React.createElement("div", {
-                              className: "subcategories"
-                            }, tmp$1));
+              return React.createElement("div", {
+                          className: "section"
+                        }, React.createElement("div", {
+                              className: "container"
+                            }, React.createElement("div", {
+                                  className: "columns"
+                                }, React.createElement("div", {
+                                      className: "column is-one-third"
+                                    }, tmp), React.createElement("div", {
+                                      className: "column"
+                                    }, React.createElement("div", {
+                                          className: "section"
+                                        }, tmp$1)))));
             }),
           /* initialState */(function () {
               return /* record */[

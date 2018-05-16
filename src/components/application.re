@@ -71,26 +71,34 @@ let make = _children => {
         |> ignore
       );
     };
-    <div>
-      <div className="categories">
-        (
-          switch (_self.state.categories) {
-          | NotAsked => <div> (ReasonReact.string("...")) </div>
-          | Loading => ReasonReact.string("Loading categories...")
-          | Failure(error) => ReasonReact.string(error)
-          | Success(categories) => <Categories data=categories onSelected />
-          }
-        )
-      </div>
-      <div className="subcategories">
-        (
-          switch (_self.state.subcategories) {
-          | NotAsked => ReasonReact.null
-          | Loading => ReasonReact.string("Loading subcategories...")
-          | Failure(error) => ReasonReact.string(error)
-          | Success(subcategories) => <Subcategories data=subcategories />
-          }
-        )
+    <div className="section">
+      <div className="container">
+        <div className="columns">
+          <div className="column is-one-third">
+            (
+              switch (_self.state.categories) {
+              | NotAsked => <div> (ReasonReact.string("...")) </div>
+              | Loading => ReasonReact.string("Loading categories...")
+              | Failure(error) => ReasonReact.string(error)
+              | Success(categories) =>
+                <Categories data=categories onSelected />
+              }
+            )
+          </div>
+          <div className="column">
+            <div className="section">
+              (
+                switch (_self.state.subcategories) {
+                | NotAsked => ReasonReact.null
+                | Loading => ReasonReact.string("Loading subcategories...")
+                | Failure(error) => ReasonReact.string(error)
+                | Success(subcategories) =>
+                  <Subcategories data=subcategories />
+                }
+              )
+            </div>
+          </div>
+        </div>
       </div>
     </div>;
   },

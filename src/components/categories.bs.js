@@ -2,6 +2,7 @@
 'use strict';
 
 var $$Array = require("bs-platform/lib/js/array.js");
+var React = require("react");
 var Category = require("./category.bs.js");
 var ReasonReact = require("reason-react/src/ReasonReact.js");
 
@@ -22,7 +23,15 @@ function make(data, onSelected, _) {
               var toCategory = function (item) {
                 return ReasonReact.element(/* Some */[item.path], /* None */0, Category.make(item.name, item.path, onSelected, /* array */[]));
               };
-              return $$Array.map(toCategory, data);
+              return React.createElement("div", {
+                          className: "box"
+                        }, React.createElement("aside", {
+                              className: "menu"
+                            }, React.createElement("p", {
+                                  className: "menu-label"
+                                }, "Categories"), React.createElement("ul", {
+                                  className: "menu-list"
+                                }, $$Array.map(toCategory, data))));
             }),
           /* initialState */component[/* initialState */10],
           /* retainedProps */component[/* retainedProps */11],

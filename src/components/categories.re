@@ -5,6 +5,13 @@ let make = (~data, ~onSelected, _children) => {
   render: _self => {
     let toCategory = item =>
       <Category name=item##name key=item##path path=item##path onSelected />;
-    data |> Array.map(toCategory) |> ReasonReact.array;
+    <div className="box">
+      <aside className="menu">
+        <p className="menu-label"> (ReasonReact.string("Categories")) </p>
+        <ul className="menu-list">
+          (data |> Array.map(toCategory) |> ReasonReact.array)
+        </ul>
+      </aside>
+    </div>;
   },
 };
