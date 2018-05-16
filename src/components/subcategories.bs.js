@@ -19,8 +19,8 @@ function make(data, _) {
           /* willUpdate */component[/* willUpdate */7],
           /* shouldUpdate */component[/* shouldUpdate */8],
           /* render */(function () {
-              var toSubcategory = function (subcategory) {
-                return ReasonReact.element(/* Some */[subcategory.name], /* None */0, Subcategory.make(subcategory.name, subcategory.resources, /* array */[]));
+              var toSubcategory = function (item) {
+                return ReasonReact.element(/* Some */[item.name], /* None */0, Subcategory.make(item.name, item.resources, /* array */[]));
               };
               return $$Array.map(toSubcategory, data);
             }),
