@@ -2,13 +2,12 @@
 'use strict';
 
 var Api = require("../utils/api.bs.js");
-var $$Array = require("bs-platform/lib/js/array.js");
 var Block = require("bs-platform/lib/js/block.js");
 var Curry = require("bs-platform/lib/js/curry.js");
 var React = require("react");
 var Categories = require("./categories.bs.js");
 var ReasonReact = require("reason-react/src/ReasonReact.js");
-var Subcategory = require("./subcategory.bs.js");
+var Subcategories = require("./subcategories.bs.js");
 
 var component = ReasonReact.reducerComponent("Application");
 
@@ -53,9 +52,7 @@ function make() {
               tmp$1 = typeof match$1 === "number" ? (
                   match$1 === 0 ? null : "Loading subcategories..."
                 ) : (
-                  match$1.tag ? $$Array.map((function (subcategory) {
-                            return ReasonReact.element(/* Some */[subcategory.name], /* None */0, Subcategory.make(subcategory.name, subcategory.resources, /* array */[]));
-                          }), match$1[0]) : match$1[0]
+                  match$1.tag ? ReasonReact.element(/* None */0, /* None */0, Subcategories.make(match$1[0], /* array */[])) : match$1[0]
                 );
               return React.createElement("div", undefined, React.createElement("div", {
                               className: "categories"

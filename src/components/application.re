@@ -88,17 +88,7 @@ let make = _children => {
           | NotAsked => ReasonReact.null
           | Loading => ReasonReact.string("Loading subcategories...")
           | Failure(error) => ReasonReact.string(error)
-          | Success(subcategories) =>
-            Array.map(
-              subcategory =>
-                <Subcategory
-                  name=subcategory##name
-                  resources=subcategory##resources
-                  key=subcategory##name
-                />,
-              subcategories,
-            )
-            |> ReasonReact.array
+          | Success(subcategories) => <Subcategories data=subcategories />
           }
         )
       </div>
