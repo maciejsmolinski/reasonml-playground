@@ -74,17 +74,6 @@ let make = _children => {
     <div className="section">
       <div className="container">
         <div className="columns">
-          <div className="column is-one-third">
-            (
-              switch (_self.state.categories) {
-              | NotAsked => <div> (ReasonReact.string("...")) </div>
-              | Loading => ReasonReact.string("Loading categories...")
-              | Failure(error) => ReasonReact.string(error)
-              | Success(categories) =>
-                <Categories data=categories onSelected />
-              }
-            )
-          </div>
           <div className="column">
             <div className="section">
               (
@@ -97,6 +86,17 @@ let make = _children => {
                 }
               )
             </div>
+          </div>
+          <div className="column is-one-third">
+            (
+              switch (_self.state.categories) {
+              | NotAsked => <div> (ReasonReact.string("...")) </div>
+              | Loading => ReasonReact.string("Loading categories...")
+              | Failure(error) => ReasonReact.string(error)
+              | Success(categories) =>
+                <Categories data=categories onSelected />
+              }
+            )
           </div>
         </div>
       </div>

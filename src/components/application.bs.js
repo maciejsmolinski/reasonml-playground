@@ -40,19 +40,19 @@ function make() {
                       }));
                 return /* () */0;
               };
-              var match = _self[/* state */1][/* categories */0];
+              var match = _self[/* state */1][/* subcategories */1];
               var tmp;
               tmp = typeof match === "number" ? (
-                  match === 0 ? React.createElement("div", undefined, "...") : "Loading categories..."
+                  match === 0 ? null : "Loading subcategories..."
                 ) : (
-                  match.tag ? ReasonReact.element(/* None */0, /* None */0, Categories.make(match[0], onSelected, /* array */[])) : match[0]
+                  match.tag ? ReasonReact.element(/* None */0, /* None */0, Subcategories.make(match[0], /* array */[])) : match[0]
                 );
-              var match$1 = _self[/* state */1][/* subcategories */1];
+              var match$1 = _self[/* state */1][/* categories */0];
               var tmp$1;
               tmp$1 = typeof match$1 === "number" ? (
-                  match$1 === 0 ? null : "Loading subcategories..."
+                  match$1 === 0 ? React.createElement("div", undefined, "...") : "Loading categories..."
                 ) : (
-                  match$1.tag ? ReasonReact.element(/* None */0, /* None */0, Subcategories.make(match$1[0], /* array */[])) : match$1[0]
+                  match$1.tag ? ReasonReact.element(/* None */0, /* None */0, Categories.make(match$1[0], onSelected, /* array */[])) : match$1[0]
                 );
               return React.createElement("div", {
                           className: "section"
@@ -61,12 +61,12 @@ function make() {
                             }, React.createElement("div", {
                                   className: "columns"
                                 }, React.createElement("div", {
-                                      className: "column is-one-third"
-                                    }, tmp), React.createElement("div", {
                                       className: "column"
                                     }, React.createElement("div", {
                                           className: "section"
-                                        }, tmp$1)))));
+                                        }, tmp)), React.createElement("div", {
+                                      className: "column is-one-third"
+                                    }, tmp$1))));
             }),
           /* initialState */(function () {
               return /* record */[
