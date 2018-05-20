@@ -2,7 +2,7 @@
 
 [ReasonML](https://reasonml.github.io/) and [Reason React](https://reasonml.github.io/reason-react/) playground with a set of tiny modules and components so that anyone can learn the language by example.
 
-![](/assets/preview.png)
+![](/assets/preview-v2.png)
 
 ## Prerequisites
 
