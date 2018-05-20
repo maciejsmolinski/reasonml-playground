@@ -26,10 +26,16 @@ let extractCategories': string => array(string) =
     |> Js.String.split("\n")
     |> Js.Array.filter(line => Js.Re.test(line, [%re "/\\[.*?\\]/ig"]));
 
+type resource = {
+  .
+  "title": string,
+  "url": string,
+};
+
 type subcategory = {
   .
   "name": string,
-  "resources": array(string),
+  "resources": array(resource),
 };
 
 let extractSubCategories: string => array(subcategory) = [%bs.raw
@@ -42,8 +48,17 @@ let extractSubCategories: string => array(subcategory) = [%bs.raw
       if (line.startsWith("*")) {
         let [current, ...other] = categories;
 
-        current.resources = [line.slice(2), ...current.resources];
+        current.resources = [ { title: line.slice(2), url: '' }, ...current.resources];
         return [current, ...other];
+      }
+      if (line.startsWith("  http")) {
+        let [current, ...other] = categories;
+        let [resource, ...resources] = current.resources;
+
+        resource.url = line.slice(2);
+        current.resources = [resource, ...resources];
+
+        return [current, ...other]
       }
       return categories;
     }, [])

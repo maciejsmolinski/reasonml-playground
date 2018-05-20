@@ -31,8 +31,17 @@ var extractSubCategories = (
       if (line.startsWith("*")) {
         let [current, ...other] = categories;
 
-        current.resources = [line.slice(2), ...current.resources];
+        current.resources = [ { title: line.slice(2), url: '' }, ...current.resources];
         return [current, ...other];
+      }
+      if (line.startsWith("  http")) {
+        let [current, ...other] = categories;
+        let [resource, ...resources] = current.resources;
+
+        resource.url = line.slice(2);
+        current.resources = [resource, ...resources];
+
+        return [current, ...other]
       }
       return categories;
     }, [])

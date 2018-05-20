@@ -27,8 +27,12 @@ function make(name, resources, _) {
                                   className: "title is-5"
                                 }, name), React.createElement("ul", undefined, $$Array.map((function (resource) {
                                         return React.createElement("li", {
-                                                    key: resource
-                                                  }, resource);
+                                                    key: resource.title
+                                                  }, React.createElement("a", {
+                                                        href: resource.url,
+                                                        rel: "noopener noreferrer",
+                                                        target: "_blank"
+                                                      }, resource.title));
                                       }), resources))));
             }),
           /* initialState */component[/* initialState */10],

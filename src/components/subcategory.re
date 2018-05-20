@@ -9,8 +9,15 @@ let make = (~name, ~resources, _children) => {
         <ul>
           (
             resources
-            |> Array.map(resource =>
-                 <li key=resource> (ReasonReact.string(resource)) </li>
+            |> Array.map((resource: Data.resource) =>
+                 <li key=resource##title>
+                   <a
+                     href=resource##url
+                     target="_blank"
+                     rel="noopener noreferrer">
+                     (ReasonReact.string(resource##title))
+                   </a>
+                 </li>
                )
             |> ReasonReact.array
           )
