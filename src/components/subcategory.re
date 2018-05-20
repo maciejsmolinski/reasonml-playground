@@ -5,7 +5,10 @@ let make = (~name, ~resources, _children) => {
   render: _self =>
     <div className="box">
       <div className="content">
-        <h2 className="title is-5"> (ReasonReact.string(name)) </h2>
+        <span
+          className="is-uppercase has-text-weight-light is-size-7 has-text-grey">
+          (ReasonReact.string(name))
+        </span>
         <ul>
           (
             resources
@@ -14,7 +17,8 @@ let make = (~name, ~resources, _children) => {
                    <a
                      href=resource##url
                      target="_blank"
-                     rel="noopener noreferrer">
+                     rel="noopener noreferrer"
+                     className="has-text-grey-dark">
                      (ReasonReact.string(resource##title))
                    </a>
                  </li>

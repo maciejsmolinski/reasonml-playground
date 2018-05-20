@@ -71,21 +71,18 @@ let make = _children => {
         |> ignore
       );
     };
-    <div className="section">
+    <div className="section has-background-white-bis">
       <div className="container">
         <div className="columns">
           <div className="column">
-            <div className="section">
-              (
-                switch (_self.state.subcategories) {
-                | NotAsked => ReasonReact.null
-                | Loading => ReasonReact.string("Loading subcategories...")
-                | Failure(error) => ReasonReact.string(error)
-                | Success(subcategories) =>
-                  <Subcategories data=subcategories />
-                }
-              )
-            </div>
+            (
+              switch (_self.state.subcategories) {
+              | NotAsked => ReasonReact.null
+              | Loading => ReasonReact.string("Loading subcategories...")
+              | Failure(error) => ReasonReact.string(error)
+              | Success(subcategories) => <Subcategories data=subcategories />
+              }
+            )
           </div>
           <div className="column is-one-third">
             (

@@ -23,12 +23,13 @@ function make(name, resources, _) {
                           className: "box"
                         }, React.createElement("div", {
                               className: "content"
-                            }, React.createElement("h2", {
-                                  className: "title is-5"
+                            }, React.createElement("span", {
+                                  className: "is-uppercase has-text-weight-light is-size-7 has-text-grey"
                                 }, name), React.createElement("ul", undefined, $$Array.map((function (resource) {
                                         return React.createElement("li", {
                                                     key: resource.title
                                                   }, React.createElement("a", {
+                                                        className: "has-text-grey-dark",
                                                         href: resource.url,
                                                         rel: "noopener noreferrer",
                                                         target: "_blank"

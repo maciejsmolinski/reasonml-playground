@@ -55,16 +55,14 @@ function make() {
                   match$1.tag ? ReasonReact.element(/* None */0, /* None */0, Categories.make(match$1[0], onSelected, /* array */[])) : match$1[0]
                 );
               return React.createElement("div", {
-                          className: "section"
+                          className: "section has-background-white-bis"
                         }, React.createElement("div", {
                               className: "container"
                             }, React.createElement("div", {
                                   className: "columns"
                                 }, React.createElement("div", {
                                       className: "column"
-                                    }, React.createElement("div", {
-                                          className: "section"
-                                        }, tmp)), React.createElement("div", {
+                                    }, tmp), React.createElement("div", {
                                       className: "column is-one-third"
                                     }, tmp$1))));
             }),
